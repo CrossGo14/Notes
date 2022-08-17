@@ -12,7 +12,8 @@ const  stack = createNativeStackNavigator();
     <NavigationContainer>
       <stack.Navigator>
         <stack.Screen name='Home' component={Home}  />
-        <stack.Screen name = 'Input' component={Input} />
+        <stack.Screen name= 'Input' component={Input} />
+
 
       </stack.Navigator>
     </NavigationContainer>

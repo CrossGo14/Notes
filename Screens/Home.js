@@ -7,7 +7,7 @@ import Input from './Input';
 import { StatusBar } from 'expo-status-bar';
 import Searchbar from '../Components/Searchbar';
 
-export default function App() {
+export default function Home() {
   const navigation = useNavigation();
 
 
@@ -35,13 +35,6 @@ onPress={()=> navigation.navigate('Input')}
  
       <Searchbar />
 
- 
-
-
-
-
-
-      
 
  </SafeAreaView>
 
