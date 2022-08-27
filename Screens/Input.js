@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import Home from "./Home";
 
 
-export default function Input() {
+export default function Input({visible,onClose,submission}) {
 
     const handlekeyb =() =>{
         Keyboard.dismiss();
@@ -14,29 +14,44 @@ export default function Input() {
      const [title, settitle] = useState('');
      const [desc, setdesc] = useState('');
 
+     const handlesubmit = () => {
+        if(!title.trim() && !desc.trim()) return onClose()
+        submission(title,desc)
+        setdesc('')
+        settitle('')
+        onClose();
+     }
+
+
+    
+
      const crossbutton =(
         <Feather
         name="x"
         size={30}
         backgroundColor='red'
         style={{paddingLeft:50}}
-        // onPress={()=> Navigation.navigate('Home') }
          />
      )
 
      const tickbutton = (
-        <Feather
-        name="check"
-        size={30}
-        backgroundColor='#2aa32c'
-        />
-     )
+    <Feather
+    name="check"
+    size={30}
+    backgroundColor='#2aa32c'
+    onPress={handlesubmit}
+
+    />
+    )
+
  
      const Navigation=useNavigation();
 
     return(
         //modal is different than view, but ig its more functional and ractiacal than vie
-        <Modal>
+        <View>
+
+        <Modal visible={visible}>
             <View style={{paddingTop:20}}></View>
 
         <TextInput
@@ -55,18 +70,19 @@ export default function Input() {
 <View style={{flexDirection:'row',justifyContent: 'center',alignItems:'center',paddingVertical:60}}>
 
             <TouchableOpacity>
-            {tickbutton}
+            
+
+            {title.trim() || desc.trim() ? 
+            tickbutton 
+        : null}
+            
                 
             </TouchableOpacity>
-
 
             <TouchableOpacity>
                 
             {crossbutton}
             </TouchableOpacity>           
-       
-       
-          
 </View>
 
         <TouchableWithoutFeedback onPress={handlekeyb}>
@@ -74,6 +90,8 @@ export default function Input() {
         </TouchableWithoutFeedback> 
 
         </Modal>
+        </View>
+
     )
 }
 

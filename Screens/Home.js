@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, View,TextInput,TouchableOpacity,SafeAreaView,Dimensions } from 'react-native';
+import { StyleSheet, Text, View,TextInput,TouchableOpacity,SafeAreaView,Dimensions, } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,36 +7,55 @@ import Input from './Input';
 import { StatusBar } from 'expo-status-bar';
 import Searchbar from '../Components/Searchbar';
 
+
 export default function Home() {
   const navigation = useNavigation();
 
 
-const [search, setsearch] = useState('')
+const [inputvisible, setinputvisible] = useState(false);
+
+const addingsubmission =(title,desc) =>
+{
+
+  console.log(desc,title);
+
+}
+
+const notesadd = (
+  <Feather.Button
+  name='plus-square'
+  size={28}
+  onPress={()=> setinputvisible(true)}
+  color='black'
+  backgroundColor='#F3F2F2'
+  
+  >
+    <Text style={{fontWeight:'bold'}}>NOTES</Text>
+
+  </Feather.Button>
+)
+
+
 
   return (
+    <>
     <SafeAreaView>
+      <View style={{justifyContent:'center',alignItems:'center' }}>
 
-  
-<View style={styles.add}>
- <Text style={styles.notes}>
-        Notes
-      </Text>
+      {notesadd}
+      </View>
 
-  <TouchableOpacity>
 
-<Feather
-name='plus-square' 
-size={35}
-onPress={()=> navigation.navigate('Input')}
-/>
-</TouchableOpacity>
-
-</View>
- 
       <Searchbar />
 
 
- </SafeAreaView>
+    </SafeAreaView>
+    <Input 
+    visible={inputvisible}
+    onClose={()=> setinputvisible(false)}
+    submission={addingsubmission} />
+
+    </>
 
     
   );
