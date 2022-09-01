@@ -22,7 +22,12 @@ export default function Input({visible,onClose,submission}) {
         onClose();
      }
 
-
+     const XClose= () =>
+     {
+        setdesc('')
+        settitle('')
+        onClose();
+     }
     
 
      const crossbutton =(
@@ -31,6 +36,7 @@ export default function Input({visible,onClose,submission}) {
         size={30}
         backgroundColor='red'
         style={{paddingLeft:50}}
+        onPress={XClose}
          />
      )
 
@@ -72,9 +78,9 @@ export default function Input({visible,onClose,submission}) {
             <TouchableOpacity>
             
 
-            {title.trim() || desc.trim() ? 
-            tickbutton 
-        : null}
+            {
+            title.trim() || desc.trim() ? tickbutton : null
+            }
             
                 
             </TouchableOpacity>
